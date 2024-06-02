@@ -67,16 +67,16 @@ Include a screenshot of your GitHub repository **after** you have pushed your in
 ```markdown
 ![Initial commit](images/mu_image.png)
 ```
-
+![Initial commit](images/mu_image.png)
 ### Identify classes, methods, and attributes
 
 After reading the task requirements, you should be able to identify the classes, methods, and attributes required for the car park system. Complete the following table with the classes, methods, and attributes you must implement.
 
-| Class Name | Attributes | Methods |
-| ---------- | ---------- | ------- |
-| `CarPark`    |            |         |
-| `Sensor`     |            |         |
-| `Display`    |            |         |
+| Class Name | Attributes                  | Methods |
+| ---------- |-----------------------------| ------- |
+| `CarPark`    | status,                     |         |
+| `Sensor`     | entry, exit                 |         |
+| `Display`    | available_bays, temperature |         |
 
 **Evidencing:**
 Ensure you have completed the previous table and include at least two methods and attributes for each.
