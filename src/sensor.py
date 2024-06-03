@@ -1,7 +1,7 @@
 class Sensor:
     pass
 
-    def __init__(self, id, is_active, car_park):
+    def __init__(self, id, car_park, is_active = False):
         self.id = id
         self.is_active = is_active
         self.car_park = car_park
