@@ -23,3 +23,27 @@ class CarPark:
             self.sensors.append(component)
         elif isinstance(component, Display):
             self.displays.append(component)
+
+
+    def add_car(self, plate):
+        self.plates.append(plate)
+        self.update_displays()
+
+    def remove_car(self, plate):
+        self.plates.remove(plate)
+        self.update_displays()
+
+    def update_displays(self):
+        for display in self.displays:
+            display.update({"Bays": self.available_bays,
+                            "Temperature": 25 })
+            print(f'Updating: {display}')
+
+    @property
+    def available_bays(self):
+        #car_park.available_bays b/c its an attribute
+        if len(self.plates) > self.capacity:
+            return 0
+        elif:
+            return self.capacity - len(self.plates)
+
