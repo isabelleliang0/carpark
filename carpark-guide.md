@@ -328,7 +328,7 @@ Now, we can add the code to add the `component` to the appropriate list. Add the
    # ... inside the register method
    if isinstance(component, Sensor):
       self.sensors.append(component)
-   # TODO: add an elif to check if the component is a Display - MUST
+   # add an elif to check if the component is a Display - MUST
    ```
 
 **Evidencing:**
@@ -443,18 +443,17 @@ This time, we will push the tag to the remote repository:
 
 Add a screenshot of the GitHub repository after pushing the tag, showing the CarPark class with the new methods:
 
-```markdown
+
 ![Added methods to the car park class](images/methods-to-car-park.png)
-```
 
 Answer the following questions:
 > **Review Questions**
 >
 > 1. **Which class is responsible for each of the following pieces of information (and why)?**
 >    - _The number of available bays_  
->      `Answer here...`
+>      `Answer here...` CarPark because the available_bays method/attribute is defined in the class CarPark and that's where capacity and plates information is stored, which is what the available bays value is derived from. 
 >    - _The current temperature_  
->      `Answer here...`
+>      `Answer here...`CarPark??Display?
 >    - _The time_  
 >      `Answer here...`
 >
@@ -462,7 +461,7 @@ Answer the following questions:
 >    `Answer here...`
 >
 > 3. **Why do you think we used a dictionary to hold the data we passed the display? List at least one advantage and one disadvantage of this approach.**  
->    `Answer here...`
+>    `Answer here...` Dictionaries are helpful in this instance because it associate values by the key and it's easy to store and retrieve it, it's useful in this project since we have a few different parameters i.e. available_bays,temperature etc. Disadvantage: there is no order to the information stored??
 
 #### Add a detect vehicle method to the Sensor class
 
