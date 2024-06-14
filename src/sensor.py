@@ -1,4 +1,4 @@
-from car_park import CarPark
+
 from abc import ABC, abstractmethod
 import random
 
@@ -27,8 +27,9 @@ class Sensor(ABC):
 
 
 class EntrySensor(Sensor):
-    self.car_park.add_car(plate)
-    print(f"Incoming 🚘 vehicle detected. Plate: {plate}")
+    def update_car_park(self, plate):
+        self.car_park.add_car(plate)
+        print(f"Incoming 🚘 vehicle detected. Plate: {plate}")
 
 class ExitSensor(Sensor):
     #just to demonstrate scan on exit since its not a real scanner
