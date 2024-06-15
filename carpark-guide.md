@@ -72,11 +72,11 @@ Include a screenshot of your GitHub repository **after** you have pushed your in
 
 After reading the task requirements, you should be able to identify the classes, methods, and attributes required for the car park system. Complete the following table with the classes, methods, and attributes you must implement.
 
-| Class Name | Attributes                        | Methods |
-| ---------- |-----------------------------------| ------- |
-| `CarPark`    | available_bays,                   |         |
-| `Sensor`     | entry, exit                       |         |
-| `Display`    | available_bays, temperature, time |         |
+| Class Name | Attributes                               | Methods                                        |
+| ---------- |------------------------------------------|------------------------------------------------|
+| `CarPark`    | location, capacity, plates, sensors, displays | add car, remove car, update, display, register |
+| `Sensor`     | id, car park, status, type               | detect car, update car, park                   |
+| `Display`    | id, message, status, car park | update, display                                |
 
 **Evidencing:**
 Ensure you have completed the previous table and include at least two methods and attributes for each.
@@ -368,11 +368,11 @@ You may want to see the number of available bays, the current temperature, and t
 Now consider, between the `CarPark`, `Sensor`, and `Display` classes, which class is responsible for each piece of information? There's no right or wrong answer here. But you should be able to justify your answer.
 
 >Q. Which class is responsible for the number of available bays (and why)?
->  CarPark, because update_carpark updates the numbers (+1 for entering, -1 for exiting) so CarPark should tally of how many is availbale.
+> 
 >Q. Which class is responsible for the current temperature (and why)?
-> Display should have the current temperature because that's the only section that will require printing out the temperature, it's not related to CarPark and Sensor. 
+> 
 >Q. Which class is responsible for the time (and why)?
-> Display should be responsible for the time because it's also not relevant to sensor and carpark, only Display need to print it out. 
+> 
 --------
 
 ##### Detour: implement available bays
@@ -451,17 +451,17 @@ Answer the following questions:
 >
 > 1. **Which class is responsible for each of the following pieces of information (and why)?**
 >    - _The number of available bays_  
->      `Answer here...` CarPark because the available_bays method/attribute is defined in the class CarPark and that's where capacity and plates information is stored, which is what the available bays value is derived from. 
+>      CarPark because the available_bays method/attribute is defined in the class CarPark and that's where capacity and plates information is stored, which is what the available bays value is derived from. 
 >    - _The current temperature_  
->      `Answer here...`CarPark??Display?
+>      CarPark because the update_display method needs to include all the information to print on the display including temperature. 
 >    - _The time_  
->      `Answer here...`
+>      CarPark because when the car enters the carpark and the plate is scanned, the time can be stamped alongside in the method i.e. through log_car. 
 >
 > 2. **What is the difference between an attribute and a property?**  
 >    `Answer here...`
 >
 > 3. **Why do you think we used a dictionary to hold the data we passed the display? List at least one advantage and one disadvantage of this approach.**  
->    `Answer here...` Dictionaries are helpful in this instance because it associate values by the key and it's easy to store and retrieve it, it's useful in this project since we have a few different parameters i.e. available_bays,temperature etc. Disadvantage: there is no order to the information stored??
+>    Dictionaries are helpful in this instance because it allows different data types to be stored and it allows the key to be linked to the value. Disadvantage: it could allow incorrect data types to be stored. 
 
 #### Add a detect vehicle method to the Sensor class
 
