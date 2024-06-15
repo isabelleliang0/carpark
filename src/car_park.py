@@ -10,7 +10,8 @@ class CarPark:
     def __init__(self,
                  location,
                  capacity,
-                 log_file = "log.txt",
+                 log_file = Path("log.txt"),
+                 config_file = Path("Config.json"),
                  plates = None,
                  sensors = None,
                  displays = None):
@@ -21,20 +22,21 @@ class CarPark:
         self.displays = displays or []
         self.log_file = log_file if isinstance(log_file, Path) else Path(log_file)
         self.log_file.touch(exist_ok=True)
+        self.config_file = Path(config_file)
 
-    def to_json(self, file_name):
-        with open(file_name, "w") as file:
+    def write_config(self):
+        with open(self.config_file, "w") as f:
             json.dump({"location": self.location,
                        "capacity": self.capacity,
-                       "log_file": str(self.log_file)}, file)
+                       "log_file": str(self.log_file)}, f)
+
+    # ... inside the CarPark class
     @staticmethod
-    def from_json(file_name):
-        #allows the creation of an instance of a capark from json.
-        with open(file_name, "r") as file:
-            conf = json.load(file)
-        return CarPark(location = conf["location"],
-                       capacity = int(conf["capacity"]),
-                       log_file = conf["log_file"])
+    def from_config(cls, config_file=Path("config.json")):
+        config_file = config_file if isinstance(config_file, Path) else Path(config_file)
+        with config_file.open() as f:
+            config = json.load(f)
+        return cls(config["location"], config["capacity"], log_file=config["log_file"])
 
     def __str__(self):
         return f'Car park at {self.location}, with {self.capacity} bays.'
@@ -74,3 +76,8 @@ class CarPark:
     def available_bays(self):
         #car_park.available_bays b/c its an attribute
         return max(0, self.capacity - len(self.plates))
+
+    # in CarPark class
+    def _log_car_activity(self, plate, action):
+        with self.log_file.open("a") as f:
+            f.write(f"{plate} {action} at {datetime.now()}\n")
