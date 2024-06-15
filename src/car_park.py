@@ -19,9 +19,8 @@ class CarPark:
         self.plates = plates or []
         self.sensors = sensors or []
         self.displays = displays or []
-        self.log_file = Path(log_file)
-        if not self.log_file.exists():
-            self.log_file.touch()
+        self.log_file = log_file if isinstance(log_file, Path) else Path(log_file)
+        self.log_file.touch(exist_ok=True)
 
     def to_json(self, file_name):
         with open(file_name, "w") as file:
